@@ -1,12 +1,13 @@
 <template>
   <div id="app">
     <!-- <input type="text" v-model="msg"> -->
+    <!-- <saveButton :saveButton="this.saveButton"></saveButton>
     <saveButton :saveButton="this.saveButton"></saveButton>
     <backButton :backButton="this.backButton"></backButton>
     <deleteButton :deleteButton="this.deleteButton"></deleteButton>
     <editButton :editButton="this.editButton"></editButton>
-    <defaultButton :defaultButton="this.defaultButton"></defaultButton>
-
+    <defaultButton :defaultButton="this.defaultButton"></defaultButton> -->
+    
   </div>
 </template>
 
@@ -21,7 +22,7 @@ export default {
       editButton:[{click:this.edit}],
       deleteButton:[{click:this.delete}],
       backButton:[{click:this.back}],
-      defaultButton:[{label:'默认',icon:'el-icon-user',click:this.default}],
+      defaultButton:[{label:'默认',click:this.default,type:"success"}],
 
     }
   },
