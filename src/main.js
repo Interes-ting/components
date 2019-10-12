@@ -4,8 +4,8 @@ import router from './router'
 import store from './store'
 import './plugins/element.js'
 // 引入所有组件
-import sir from './components/index'
-Vue.use(sir)
+import Buttons from './components/index'
+Vue.use(Buttons)
 
 Vue.config.productionTip = false
 

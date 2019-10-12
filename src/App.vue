@@ -1,13 +1,11 @@
 <template>
   <div id="app">
-    <!-- <input type="text" v-model="msg"> -->
-    <!-- <saveButton :saveButton="this.saveButton"></saveButton>
+    <saveButton :saveButton="this.saveButton"></saveButton>
     <saveButton :saveButton="this.saveButton"></saveButton>
     <backButton :backButton="this.backButton"></backButton>
     <deleteButton :deleteButton="this.deleteButton"></deleteButton>
     <editButton :editButton="this.editButton"></editButton>
-    <defaultButton :defaultButton="this.defaultButton"></defaultButton> -->
-    
+    <defaultButton :defaultButton="this.defaultButton"></defaultButton>
   </div>
 </template>
 
@@ -17,7 +15,6 @@ export default {
   name: 'app',
   data() {
     return {
-      // msg:'123',
       saveButton:[{click:this.save}],
       editButton:[{click:this.edit}],
       deleteButton:[{click:this.delete}],
@@ -32,7 +29,6 @@ export default {
     },
     edit(){
       console.log('编辑');
-      // this.msg = '编辑'
     },
     delete(){
       console.log('删除');
