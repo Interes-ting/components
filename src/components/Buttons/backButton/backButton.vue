@@ -6,7 +6,7 @@
  
 <script>
 export default {
-  name: 'backButton', // 删除按钮
+  name: 'backButton', // 返回按钮
   props: {
     backButton: {
       type: Array,

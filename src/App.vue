@@ -1,11 +1,10 @@
 <template>
   <div id="app">
-    <saveButton :saveButton="this.saveButton"></saveButton>
-    <saveButton :saveButton="this.saveButton"></saveButton>
     <backButton :backButton="this.backButton"></backButton>
     <deleteButton :deleteButton="this.deleteButton"></deleteButton>
     <editButton :editButton="this.editButton"></editButton>
     <defaultButton :defaultButton="this.defaultButton"></defaultButton>
+    <saveButton :saveButton="this.saveButton"></saveButton>
   </div>
 </template>
 
@@ -15,12 +14,11 @@ export default {
   name: 'app',
   data() {
     return {
-      saveButton:[{click:this.save}],
       editButton:[{click:this.edit}],
       deleteButton:[{click:this.delete}],
       backButton:[{click:this.back}],
       defaultButton:[{label:'默认',click:this.default,type:"success"}],
-
+      saveButton:[{click:this.save}],
     }
   },
   methods: {
@@ -38,6 +36,9 @@ export default {
     },
     default(){
       console.log('默认事件');
+    },
+    save(){
+      console.log('保存');
     }
   },
 }
