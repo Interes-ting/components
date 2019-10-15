@@ -1,16 +1,15 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
-import store from './store'
-import './plugins/element.js'
-// 引入所有组件
-import Buttons from './components/index'
-Vue.use(Buttons)
 
-Vue.config.productionTip = false
+import MoorUI from './index.js'
+Vue.use(MoorUI)
+
+// 引入element ui
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
 
 new Vue({
-  router,
-  store,
+  el: '#app',
   render: h => h(App)
-}).$mount('#app')
+})

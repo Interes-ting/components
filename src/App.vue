@@ -1,48 +1,32 @@
 <template>
   <div id="app">
-    <backButton :backButton="this.backButton"></backButton>
-    <deleteButton :deleteButton="this.deleteButton"></deleteButton>
-    <editButton :editButton="this.editButton"></editButton>
-    <defaultButton :defaultButton="this.defaultButton"></defaultButton>
-    <saveButton :saveButton="this.saveButton"></saveButton>
-  </div>
+      <mt-back-button :backbtn="this.backbtn"></mt-back-button>
+      <mt-save-button :savebtn="this.savebtn"></mt-save-button>
+  </div>  
 </template>
 
 <script>
-
 export default {
   name: 'app',
-  data() {
+  data () {
     return {
-      editButton:[{click:this.edit}],
-      deleteButton:[{click:this.delete}],
-      backButton:[{click:this.back}],
-      defaultButton:[{label:'默认',click:this.default,type:"success"}],
-      saveButton:[{click:this.save}],
+      //返回按钮属性
+      backbtn:[
+        {label:'返回',icon:'el-icon-back',click:this.back,size:''}
+      ],
+      //保存按钮属性
+       savebtn:[
+        {label:'返回',icon:'el-icon-check',click:this.back}
+      ]
     }
   },
   methods: {
-    save(){
-      console.log('保存');
-    },
-    edit(){
-      console.log('编辑');
-    },
-    delete(){
-      console.log('删除');
-    },
     back(){
-      console.log('back');
-    },
-    default(){
-      console.log('默认事件');
+      console.log('返回')
     },
     save(){
-      console.log('保存');
+      console.log('保存')
     }
-  },
+  }
 }
 </script>
-
-<style>
-</style>
