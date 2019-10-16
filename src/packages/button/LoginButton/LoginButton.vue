@@ -1,15 +1,15 @@
 <template>
  <el-button-group>
-  <el-button v-for="(btn,index) in this.savebtn" :key="index" :type="btn.type ? btn.type:'primary'"
+  <el-button v-for="(btn,index) in this.loginbtn" :key="index" :type="btn.type ? btn.type:'primary'"
    :icon="btn.icon" :size="btn.size?btn.size:''" @click="btn.click">{{btn.label}}</el-button>
  </el-button-group>
 </template>
   
 <script>
 export default {
- name: 'mtSaveButton', //保存按钮
+ name: 'mtLoginButton', // 登录按钮
  props: {
-  savebtn: {
+  loginbtn: {
    type: Array,
    required: true
   }
