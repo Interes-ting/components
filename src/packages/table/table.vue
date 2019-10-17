@@ -1,7 +1,7 @@
 
 <template>
     <div id="commonTable">
-        <el-table :data="data" :max-height="maxHeight" stripe tooltip-effect="light"  @selection-change="handleSelectionChange">
+        <el-table ref="mt-table" :data="data" :max-height="maxHeight" stripe tooltip-effect="light"  @selection-change="handleSelectionChange">
             <!-- 多选框 -->
             <el-table-column type="selection" width="55" ></el-table-column>
             <!-- 这里使用插槽，在父组件中放置编辑删除按钮 -->
@@ -15,7 +15,7 @@
                     :label="item.label"
                     :align="item.align?item.align:'center'"
                     :width="item.width"
-                    :formatter="item.formatter?item.formatter : formatterValue"
+                    show
                 >
                 </el-table-column>
             </template>
@@ -44,21 +44,42 @@ export default {
         maxHeight: {
             type: Number,
             default: 2000
-        }
+        },
     },
     methods: {
-        handleSelectionChange(val) {
-            this.$emit('handleSelectionChange', val); //下拉框处理函数
+        handleSelectionChange(val) { //多选框处理函数
+            // this.$emit 触发app.vue里面的多选事件
+            this.$emit('handleSelectionChange', val);  
+            this.multipleSelection = val; //保存每次多选框选择的值
         },
-        handleSizeChange(val) {
-            this.$emit('handleSizeChange', val);  //handleSizeChange 改变单页数据大小
+
+        handleSizeChange(val) { //handleSizeChange 改变单页数据大小
+            this.$emit('handleSizeChange', val);  
+
         },
-        handleCurrentChange(val) {
-            this.$emit('handleCurrentChange', val);  //handleCurrentChange是翻页事件的处理函数
+        handleCurrentChange(val) {  //handleCurrentChange是翻页事件的处理函数
+            this.$emit('handleCurrentChange', val); 
+
         },
-        formatterValue(row, column, cellValue) {
-            return cellValue;
-        }
+
+        reload() { //刷新页面
+            this.$Axios.post(
+                this.url,
+                { page: this.currentPage, size: this.pagesize },
+                res => {
+                    if (res.data.success) {
+                        this.$emit("childByValue", res.data.data);
+                        this.total = res.data.count;
+                    } else {
+                        this.$message({
+                            message: res.data.msg,
+                            type: "warning"
+                        });
+                    }
+                }
+            );
+        },
+
     }
 }
 </script>

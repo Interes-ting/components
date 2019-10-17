@@ -14,17 +14,18 @@
 
       <!-- 表格 -->
       <div>
-          <mt-table :columns="columns" :data="tableData" :pager="page" @handleSizeChange="handleSizeChange"
+          <mt-table :columns="columns" :data="tableData" :pager="page" @selection-change="handleSelectionChange" @handleSizeChange="handleSizeChange"
           @handleCurrentChange="handleCurrentChange">
             <el-table-column slot="table_oper" align="center" label="操作" width="150" :resizable="false">
               <!-- 按钮组 -->
               <template slot-scope="scope">
-                <el-button type="text" @click="editTableData(scope.row)">编辑</el-button>
-                <el-button type="text" @click="editTableData(scope.row)">删除</el-button>
+                <el-button type="text" @click.native.prevent="editTableData(scope.$index,scope.row)">编辑</el-button>
+                <el-button type="text" @click="deleteTableData(scope.$index,scope.row)">删除</el-button>
               </template>
             </el-table-column>
         </mt-table>
       </div>
+  
 
   </div>  
 </template>
@@ -56,7 +57,7 @@ export default {
       ],
       //删除按钮属性
       deletebtn:[
-        {label:'删除',click:this.delete}
+        {label:'批量删除',type:'',icon:'el-icon-delete',click:this.delete}
       ],
       //通过按钮属性
       passbtn:[
@@ -98,8 +99,12 @@ export default {
 
    }
   },
+  // 将表格数据 挂载到 vue实例挂载完成之后
   mounted() {
     this.tableData = [
+    {id: '1', name: '111111', address: '上海市普陀区金沙江路 1518 弄',phone:'12345649',email:'1456892156@qq.com'},
+    {id: '2', name: '111111', address: '上海市普陀区金沙江路 1518 弄',phone:'12345649',email:'1456892156@qq.com'},
+    {id: '3', name: '111111', address: '上海市普陀区金沙江路 1518 弄',phone:'12345649',email:'1456892156@qq.com'},
     {id: '15348749', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄',phone:'12345649',email:'1456892156@qq.com'},
     {id: '15348749', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄',phone:'12345649',email:'1456892156@qq.com'},
     {id: '15348749', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄',phone:'12345649',email:'1456892156@qq.com'},
@@ -137,7 +142,10 @@ export default {
     {id: '15348749', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄',phone:'12345649',email:'1456892156@qq.com'},
     {id: '15348749', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄',phone:'12345649',email:'1456892156@qq.com'},
     {id: '15348749', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄',phone:'12345649',email:'1456892156@qq.com'},
-    {id: '15348749', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄',phone:'12345649',email:'1456892156@qq.com'},
+    {id: '15348749', name: '111111', address: '上海市普陀区金沙江路 1518 弄',phone:'12345649',email:'1456892156@qq.com'},
+    {id: '15348749', name: '111111', address: '上海市普陀区金沙江路 1518 弄',phone:'12345649',email:'1456892156@qq.com'},
+    {id: '15348749', name: '111111', address: '上海市普陀区金沙江路 1518 弄',phone:'12345649',email:'1456892156@qq.com'},
+
     ];
     // 页面数量等于表格数据长度
     this.page.total = this.tableData.length;
@@ -156,23 +164,41 @@ export default {
     reset(){console.log('重置');},
     logout(){console.log('退出');},
 
-    // 重新渲染name列
-    formatter(row, column, cellValue) {
-    return 'hello ' + row.name;
+    // 多选框处理函数
+    handleSelectionChange(val) {
+      console.log('多选款');
     },
-    // 改变页面大小处理
+    // 改变表格数据显示条数
     handleSizeChange(val) {
-
+      console.log('一页显示多少条');
     },
     // 翻页处理
     handleCurrentChange(val) {
-
+      console.log('这是翻页');
     },
-    editTableData(row) {
-      console.log('bianji ');
+    editTableData(row) {  //编辑按钮事件
+      // console.log('bianji ',row);
+      // this.columns.splice(index,1);
     }, 
-    deleteTableData(row) {
-      console.log('sjamcji');
+    deleteTableData(index,row) { //删除按钮事件
+      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+        center: true
+        }).then(() => {
+          // 删除当前行
+          this.tableData.splice(index,1);
+            this.$message({
+              type: 'success',
+              message: '删除成功!'
+            });
+          }).catch(() => {
+            this.$message({
+              type: 'info',
+              message: '已取消删除'
+            });
+      }); 
     }
 
   }
