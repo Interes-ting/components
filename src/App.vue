@@ -14,8 +14,7 @@
 
       <!-- 表格 -->
       <div>
-          <mt-table :columns="columns" :data="tableData" :pager="page" @selection-change="handleSelectionChange" @handleSizeChange="handleSizeChange"
-          @handleCurrentChange="handleCurrentChange">
+          <mt-table :columns="columns" :data="tableData" @check="checkbox">
             <el-table-column slot="table_oper" align="center" label="操作" width="150" :resizable="false">
               <!-- 按钮组 -->
               <template slot-scope="scope">
@@ -31,7 +30,10 @@
 </template>
 
 <script>
+
+
 export default {
+
   name: 'app',
   data () {
     return {
@@ -79,23 +81,19 @@ export default {
       logoutbtn:[
         {label:'退出',click:this.logout}
       ],
+      
+      //用来保存每次多选框的值
+      message: null,
       // 表格表头属性设置
-     columns: [
-      {prop: 'id', label: 'ID', width: '150', align: 'left'},
-      {prop: 'name', label: '姓名', width: '200', align: 'center', formatter: this.formatter},
-      {prop: 'address', label: '地址', align: 'center'},
-      {prop: 'phone', label: '手机号码', align: 'center'},
-      {prop: 'email', label: '电子邮箱', align: 'center'}
-    ],
+      columns: [
+        {prop: 'id', label: 'ID', width: '150', align: 'left'},
+        {prop: 'name', label: '姓名', width: '200', align: 'center', formatter: this.formatter},
+        {prop: 'address', label: '地址', align: 'center'},
+        {prop: 'phone', label: '手机号码', align: 'center'},
+        {prop: 'email', label: '电子邮箱', align: 'center'}
+      ],
     //表格数据源 
     tableData: [],
-    // 分页参数
-    page: {
-      pageNo: 1, //当前页
-      limit: 10, //一页显示多少行 默认10行
-      sizes: [10, 50, 100], //
-      total: 0 //总页数
-    }
 
    }
   },
@@ -147,8 +145,6 @@ export default {
     {id: '15348749', name: '111111', address: '上海市普陀区金沙江路 1518 弄',phone:'12345649',email:'1456892156@qq.com'},
 
     ];
-    // 页面数量等于表格数据长度
-    this.page.total = this.tableData.length;
   },
 
   methods: {
@@ -157,24 +153,21 @@ export default {
     select(){console.log('查询');},
     export(){console.log('导出');},
     add(){console.log('保存');},
-    delete(){console.log('删除');},
+
     pass(){console.log('通过');},
     refuse(){console.log('拒绝');},
     login(){console.log('登录');},
     reset(){console.log('重置');},
     logout(){console.log('退出');},
 
-    // 多选框处理函数
-    handleSelectionChange(val) {
-      console.log('多选款');
+
+    checkbox(checkval) { //多选框的值
+        this.message = checkval;
     },
-    // 改变表格数据显示条数
-    handleSizeChange(val) {
-      console.log('一页显示多少条');
-    },
-    // 翻页处理
-    handleCurrentChange(val) {
-      console.log('这是翻页');
+    
+    delete(){ //批量删除事件
+      console.log(this.message);
+      
     },
     editTableData(row) {  //编辑按钮事件
       // console.log('bianji ',row);
