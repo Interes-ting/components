@@ -1,4 +1,4 @@
-import mtEditContent from './editContent.vue'; //编辑区域
+import mtEditContent from './editContent.vue'; 
 
 mtEditContent.install = function(Vue) {
   Vue.component(mtEditContent.name, mtEditContent);

@@ -1,20 +1,14 @@
 <template>
-    <div class="mt-view-content" style="height: 60px;">
-        <slot></slot>
-    </div>
+
+    <el-main>
+      <slot>
+    
+      </slot>
+    </el-main>
+  
 </template>
 <script>
 export default {
-    name:'mtViewContent', //查看页面容器
-
-}
+  name: "mtViewConetnt" //查看内容区域
+};
 </script>
-<style scoped>
-.mt-view-content {
-    display: block;
-    background-color: green;
-    line-height: 60px;
-    padding: 0 20px;
-    box-sizing: border-box;
-}
-</style>

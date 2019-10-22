@@ -1,21 +1,15 @@
 <template>
-    <div class="mt-search-form">
-        <slot></slot>
-    </div>
+
+    <el-main>
+      <slot>
+    
+      </slot>
+    </el-main>
+   
 </template>
 <script>
 export default {
-    name:'mtSearchForm', //查询条件区域
-
-}
+  name: "mtSearchForm" //标签命名
+};
 </script>
-<style scoped>
-.mt-search-form {
-    display: block;
-    flex: 1;
-    background-color: yellow;
-    overflow: auto;
-    box-sizing: border-box;
-    padding: 20px 20px 0 20px;
-}
-</style>>
+

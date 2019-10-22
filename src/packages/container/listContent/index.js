@@ -1,4 +1,4 @@
-import mtListContent from './listContent.vue'; //列表内容区域
+import mtListContent from './listContent.vue'; 
 
 mtListContent.install = function(Vue) {
   Vue.component(mtListContent.name, mtListContent);

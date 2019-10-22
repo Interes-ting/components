@@ -1,7 +1,7 @@
-import mtContainer from './toolbar.vue'; //工具栏
+import mtToolbar from './toolbar.vue'; //工具栏
 
-mtContainer.install = function(Vue) {
-  Vue.component(mtContainer.name, mtContainer);
+mtToolbar.install = function(Vue) {
+  Vue.component(mtToolbar.name, mtToolbar);
 };
 
-export default mtContainer;
+export default mtToolbar;

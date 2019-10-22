@@ -1,14 +1,14 @@
 <template>
-    <div class="block">
+    <div>
         <!-- 分页 -->
         <el-pagination
             @size-change="handleSizeChange"  
             @current-change="handleCurrentChange"
             style="text-align: center;margin:20px 0;"
-            :current-page="pager.pageNo"
-            :page-size="pager.limit"
-            :page-sizes="pager.sizes"
-            :total="pager.total"
+            :current-page="currentPage"
+            :page-size="pageSize"
+            :page-sizes="pageSizes"
+            :total="total"
             layout="total, sizes, prev, pager, next, jumper">
         </el-pagination>
     </div>
@@ -17,20 +17,29 @@
 export default {
     name: 'mtPage', //标签命名
     props: {
-        pager: Object,
-    },
-    data() {
-        return {
-          // 默认
-          delList: null
+        currentPage: {
+            type: Number,
+            default:()=>{}
+        },
+        pageSizes: {
+            type: Array,
+            default:()=>{}
+        },
+        pageSize: {
+            type: Number,
+            default:()=>{}
+        },
+        total: {
+            type: Number,
+            default:()=>{}
         }
     },
     methods: {
         handleSizeChange(val) { //handleSizeChange 改变单页数据大小
-            this.$emit('handleSizeChange', val);  
+            this.$emit('sizeChange', val);  
         },
         handleCurrentChange(val) {  //handleCurrentChange是翻页事件的处理函数
-            this.$emit('handleCurrentChange', val);  
+            this.$emit('currentChange', val);  
         },
 
     }

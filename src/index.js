@@ -13,12 +13,14 @@ import LoginoutButton from './packages/button/LogoutButton/index' //登录按钮
 import mtTbale from './packages/table/index' //表格
 import mtPage from './packages/page/index' //分页
 
-import mtContainer from './packages/container/toolbar/index' //工具栏区域容器
-import mtListContent from './packages/container/listContent' //列表内容区域容器
+import mtContainer from './packages/container/contain/index' //布局
+import mtListContent from './packages/container/listContent/index' //列表内容区域容器
 import mtSearchForm from './packages/container/searchForm/index' //搜索条件区域容器
 import mtEditContent from './packages/container/editContent/index' //编辑页面区域容器
 import mtViewContent from './packages/container/viewContent/index' //查看页面区域容器
+import mtToolbar from './packages/container/toolbar/index' //工具栏区域容器
 
+import mtForm from './packages/form/index'  //表单
 
 const components = [
   BackButton,
@@ -39,6 +41,8 @@ const components = [
   mtSearchForm,
   mtEditContent,
   mtViewContent,
+  mtToolbar,
+  mtForm
 ]
 
 const install = function(Vue, opts = {}) {
@@ -71,5 +75,7 @@ export default {
   mtListContent,
   mtSearchForm,
   mtEditContent,
-  mtViewContent
+  mtViewContent,
+  mtToolbar,
+  mtForm
 }

@@ -1,7 +1,7 @@
-import mtViewContent from './viewContent.vue'; //查看页面区域
+import mtViewConetnt from './viewContent.vue'; //分页
 
-mtViewContent.install = function(Vue) {
-  Vue.component(mtViewContent.name, mtViewContent);
+mtViewConetnt.install = function(Vue) {
+  Vue.component(mtViewConetnt.name, mtViewConetnt);
 };
 
-export default mtViewContent;
+export default mtViewConetnt;
