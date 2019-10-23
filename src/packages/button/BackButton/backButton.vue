@@ -1,7 +1,7 @@
 <template>
  <el-button-group>
   <el-button v-for="(btn,index) in this.backbtn" :key="index" :type="btn.type ? btn.type:'primary'"
-   :icon="btn.icon" :size="btn.size?btn.size:'mini'" @click="btn.click">{{btn.label}}</el-button>
+   :icon="btn.icon" :size="btn.size?btn.size:''" @click="btn.click">{{btn.label}}</el-button>
  </el-button-group>
 </template>
   

@@ -1,7 +1,7 @@
-import SelectButton from './SelectButton.vue'; //查询按钮
+import SeleteButton from './SeleteButton.vue'; //查询按钮
 
-SelectButton.install = function(Vue) {
-  Vue.component(SelectButton.name, SelectButton);
+SeleteButton.install = function(Vue) {
+  Vue.component(SeleteButton.name, SeleteButton);
 };
 
-export default SelectButton;
+export default SeleteButton;

@@ -1,8 +1,11 @@
-import BackButton from './packages/button/BackButton/index'; //返回按钮
-import SaveButton from './packages/button/SaveButton/index'; //保存按钮
-import SelectButton from './packages/button/SelectButton/index' //查询按钮
+import mtButton from './packages/button/mtButton/index' //默认按钮
+
+
+import BackButton from './packages/button/BackButton/index' //返回按钮
+import SaveButton from './packages/button/SaveButton/index' //保存按钮
+import SeleteButton from './packages/button/SelectButton/index' //查询按钮
 import ExportButton from './packages/button/ExportButton/index' //导出按钮
-import AddButton from './packages/button/AddButton/index' //添加按钮
+// import AddButton from './packages/button/AddButton/index' //添加按钮
 import DeletButton from './packages/button/DeleteButton/index' //删除按钮
 import PassButton from './packages/button/PassButton/index' //通过按钮
 import RefuseButton from './packages/button/RefuseButton/index' //拒绝按钮
@@ -23,11 +26,12 @@ import mtToolbar from './packages/container/toolbar/index' //工具栏区域容�
 import mtForm from './packages/form/index'  //表单
 
 const components = [
+  mtButton,
   BackButton,
   SaveButton,
-  SelectButton,
+  SeleteButton,
   ExportButton,
-  AddButton,
+  // AddButton,
   DeletButton,
   PassButton,
   RefuseButton,
@@ -58,11 +62,12 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 export default {
   install,
+  mtButton,
   BackButton,
   SaveButton,
-  SelectButton,
+  SeleteButton,
   ExportButton,
-  AddButton,
+  // AddButton,
   DeletButton,
   PassButton,
   RefuseButton,

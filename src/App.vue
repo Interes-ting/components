@@ -3,31 +3,23 @@
     <mt-container>
       <!-- 工具栏区域 -->
       <mt-toolbar slot="header">
-        <mt-delete-button :deletebtn="this.deletebtn"></mt-delete-button>
-        <!-- <mt-back-button :backbtn="this.backbtn"></mt-back-button> 
-        <mt-save-button :savebtn="this.savebtn"></mt-save-button>
-        <mt-select-button :selectbtn="this.selectbtn"></mt-select-button>
-        <mt-export-button :exportbtn="this.exportbtn"></mt-export-button>
-        <mt-add-button :addbtn="this.addbtn"></mt-add-button>
-        <mt-delete-button :deletebtn="this.deletebtn"></mt-delete-button>
-        <mt-pass-button :passbtn="this.passbtn"></mt-pass-button>
-        <mt-refuse-button :refusebtn="this.refusebtn"></mt-refuse-button>
-        <mt-login-button :loginbtn="this.loginbtn"></mt-login-button>
-        <mt-reset-button :resetbtn="this.resetbtn"></mt-reset-button>
-        <mt-logout-button :logoutbtn="this.logoutbtn"></mt-logout-button>  -->
+        <!-- 标签 -->
+        <mt-button type="danger" label="11111"></mt-button>
+        <mt-button type="primary" icon="el-icon-success"  label="保存" @click="add"></mt-button>
+
       </mt-toolbar>
 
       <!-- 列表界面内容区域 -->
       <mt-list-content slot="main">
         <!-- 表格 -->
-        <!-- <mt-table :columns="columns" :data="tableData" @check="checkbox">
+        <mt-table :columns="columns" :data="tableData" @check="checkbox">
           <el-table-column slot="table_oper" align="center" label="操作" width="150" :resizable="false">
             <template slot-scope="scope">
               <el-button type="text" @click.native.prevent="editTableData(scope.$index,scope.row)">编辑</el-button>
               <el-button type="text" @click="deleteTableData(scope.$index,scope.row)">删除</el-button>
             </template>
           </el-table-column>
-        </mt-table> -->
+        </mt-table>
         <!-- 分页 -->
         <!-- <mt-page 
           :current-page="currentPage" 
@@ -38,26 +30,8 @@
           @currentChange="currentChange"
         ></mt-page> -->
         
-        <mt-form>
-          <el-form-item label="工号" prop="jobNo" style="padding-right:100px">
-            <el-input  placeholder="工号" style="width:300px"></el-input>
-          </el-form-item>
-                    <el-form-item label="工号" prop="jobNo" style="padding-right:100px">
-            <el-input  placeholder="工号" style="width:300px"></el-input>
-          </el-form-item>
-                    <el-form-item label="工号" prop="jobNo" style="padding-right:100px">
-            <el-input  placeholder="工号" style="width:300px"></el-input>
-          </el-form-item>
-            <el-form-item label="活动形式">
-    <el-input type="textarea" style="width:728px;padding-right:100px"></el-input>
-  </el-form-item>
-                            <el-form-item label="工号" prop="jobNo" style="padding-right:100px">
-            <el-input  placeholder="工号" style="width:300px"></el-input>
-          </el-form-item>
-        </mt-form>
 
       </mt-list-content>
-       <!-- 表单 -->
 
     </mt-container>
   </div>  
@@ -73,9 +47,13 @@ export default {
   data () {
     return {
       //删除按钮属性
-      deletebtn:[
-        {label:'批量删除',type:'',icon:'el-icon-delete',click:this.delete}
-      ],
+      deletebtn:[{
+        label:'删除',
+        type:'danger',
+        icon:'el-icon-delete',
+        size:'mini',
+        click:this.delete 
+      }],
 
       //用来保存每次多选框的值
       message: null,
@@ -96,7 +74,12 @@ export default {
       currentPage: 1, //当前页
       pageSize: 10 ,//每页显示条目个数
       pageSizes: [10,20,50,10], //每页显示个数选择器的选项设置
-      total:50 //	总条目数
+      total:50, //	总条目数
+
+      formInline: {
+        user: '1111',
+        region: '22222'
+      }
    }
   },
     // 将表格数据 挂载到 vue实例挂载完成之后
@@ -118,11 +101,12 @@ export default {
     checkbox(checkval) { //多选框的值
         this.message = checkval;
     },
-    
+    add(){
+      console.log('111');
+    },
     delete(){ //批量删除事件
       console.log(this.message); 
     },
-
     editTableData(row) {  //单行编辑按钮事件
       // console.log('bianji ',row);
       // this.columns.splice(index,1);
@@ -150,7 +134,7 @@ export default {
     },
 
     
-    sizeChange(val) { // 改变表格数据显示条数
+    sizeChange(val) { // 改变分页数据显示条数
       console.log('一页显示多少条');
       console.log(val);
     },
