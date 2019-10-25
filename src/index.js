@@ -23,8 +23,9 @@ import mtEditContent from './packages/container/editContent/index' //编辑页�
 import mtViewContent from './packages/container/viewContent/index' //查看页面区域容器
 import mtToolbar from './packages/container/toolbar/index' //工具栏区域容器
 
-import mtForm from './packages/form/index'  //表单
-
+import mtFormThree from './packages/form/mtFormThree/index' //表单一行显示三列
+import mtFormTwo from './packages/form/mtFormTwo/index'  //表单一行显示两列
+import mtForm from './packages/form/mtForm/index' //表单单独一列
 const components = [
   mtButton,
   BackButton,
@@ -46,6 +47,8 @@ const components = [
   mtEditContent,
   mtViewContent,
   mtToolbar,
+  mtFormThree,
+  mtFormTwo,
   mtForm
 ]
 
@@ -82,5 +85,7 @@ export default {
   mtEditContent,
   mtViewContent,
   mtToolbar,
+  mtFormThree,
+  mtFormTwo,
   mtForm
 }

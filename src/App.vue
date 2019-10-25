@@ -7,8 +7,6 @@
         <mt-button type="danger" label="11111"></mt-button>
         <mt-button type="primary" icon="el-icon-success"  label="保存" @click="add"></mt-button>
         <mt-button type="primary" label="登录"></mt-button>
-
-
       </mt-toolbar>
 
       <!-- 列表界面内容区域 -->
@@ -17,7 +15,7 @@
         <mt-table :columns="columns" :data="tableData" @check="checkbox">
           <el-table-column slot="table_oper" align="center" label="操作" width="150" :resizable="false">
             <template slot-scope="scope">
-              <el-button type="text" @click.native.prevent="editTableData(scope.$index,scope.row)">编辑</el-button>
+              <el-button type="text" @click.prevent="editTableData(scope.$index,scope.row)">编辑</el-button>
               <el-button type="text" @click="deleteTableData(scope.$index,scope.row)">删除</el-button>
             </template>
           </el-table-column>
@@ -32,18 +30,12 @@
           @currentChange="currentChange"
         ></mt-page>
         <!-- label-width为靠右对齐  此属性必须存在，里面的宽度可以自己调节 -->
-        <mt-form-three label-width="100px"> 
-          <el-form-item label="工号" >
-            <el-input v-model="formLabelAlign.name"></el-input>
-          </el-form-item>
-          <el-form-item label="姓名" >
-            <el-input v-model="formLabelAlign.region"></el-input>
-          </el-form-item>
-          <el-form-item label="电子邮箱">
-            <el-input v-model="formLabelAlign.type"></el-input>
-          </el-form-item>
-        </mt-form-three>
-
+ <!-- label-width为靠右对齐  此属性必须存在，里面的宽度可以自己调节 -->
+        <mt-form>       
+          <el-form-item label="活动区域" :span="12" slot="input">
+            <el-input></el-input>
+          </el-form-item>         
+        </mt-form>
       </mt-list-content>
 
     </mt-container>
@@ -55,7 +47,6 @@
 
 
 export default {
-
   name: 'app',
   data () {
     return {
@@ -87,27 +78,7 @@ export default {
       currentPage: 1, //当前页
       pageSize: 10 ,//每页显示条目个数
       pageSizes: [10,20,50,10], //每页显示个数选择器的选项设置
-      total:50, //	总条目数
-
-        formLabelAlign: {
-          name: '',
-          region: '',
-          type: ''
-        },
-
-         model: {
-        one: '',
-        two: '',
-        three: '',
-        four: '',
-        five: '',
-      },
-
-       rules: {
-        one: [
-          { required: true, message: '请填写', trigger: 'blur' },
-        ],
-      },
+      total:50, //	总条目数 
    }
   },
     // 将表格数据 挂载到 vue实例挂载完成之后
@@ -123,13 +94,9 @@ export default {
         {id: '18', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄',phone:'12345649',email:'1456892156@qq.com'},
         {id: '49', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄',phone:'12345649',email:'1456892156@qq.com'},
       ];
-      // this.common.login();
     },
 
   methods: {
-    login(){
-
-    },
     checkbox(checkval) { //多选框的值
         this.message = checkval;
     },
@@ -163,6 +130,13 @@ export default {
               message: '已取消删除'
             });
       }); 
+
+      // this.$alertMsgBox('确认执行删除操作', '提示')
+      // .then(() => {
+      //   this.tableData.splice(index,1);
+
+      // })
+      // .catch(() => {})
     },
 
     
