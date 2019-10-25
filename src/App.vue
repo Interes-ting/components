@@ -6,6 +6,8 @@
         <!-- 标签 -->
         <mt-button type="danger" label="11111"></mt-button>
         <mt-button type="primary" icon="el-icon-success"  label="保存" @click="add"></mt-button>
+        <mt-button type="primary" label="登录"></mt-button>
+
 
       </mt-toolbar>
 
@@ -21,15 +23,26 @@
           </el-table-column>
         </mt-table>
         <!-- 分页 -->
-        <!-- <mt-page 
+        <mt-page 
           :current-page="currentPage" 
           :page-sizes="pageSizes" 
           :page-size="pageSize" 
           :total="total"
           @sizeChange="sizeChange" 
           @currentChange="currentChange"
-        ></mt-page> -->
-        
+        ></mt-page>
+        <!-- label-width为靠右对齐  此属性必须存在，里面的宽度可以自己调节 -->
+        <mt-form-three label-width="100px"> 
+          <el-form-item label="工号" >
+            <el-input v-model="formLabelAlign.name"></el-input>
+          </el-form-item>
+          <el-form-item label="姓名" >
+            <el-input v-model="formLabelAlign.region"></el-input>
+          </el-form-item>
+          <el-form-item label="电子邮箱">
+            <el-input v-model="formLabelAlign.type"></el-input>
+          </el-form-item>
+        </mt-form-three>
 
       </mt-list-content>
 
@@ -58,7 +71,7 @@ export default {
       //用来保存每次多选框的值
       message: null,
 
-      // 表格表头属性设置
+      // 表格表头属性设置 
       columns: [
         {prop: 'id', label: 'ID', width: '150', align: 'left'},
         {prop: 'name', label: '姓名', width: '200', align: 'center', formatter: this.formatter},
@@ -69,17 +82,32 @@ export default {
 
       //表格数据源 
       tableData: [],
-
+                                                                                                                              
       // 分页数据
       currentPage: 1, //当前页
       pageSize: 10 ,//每页显示条目个数
       pageSizes: [10,20,50,10], //每页显示个数选择器的选项设置
       total:50, //	总条目数
 
-      formInline: {
-        user: '1111',
-        region: '22222'
-      }
+        formLabelAlign: {
+          name: '',
+          region: '',
+          type: ''
+        },
+
+         model: {
+        one: '',
+        two: '',
+        three: '',
+        four: '',
+        five: '',
+      },
+
+       rules: {
+        one: [
+          { required: true, message: '请填写', trigger: 'blur' },
+        ],
+      },
    }
   },
     // 将表格数据 挂载到 vue实例挂载完成之后
@@ -95,9 +123,13 @@ export default {
         {id: '18', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄',phone:'12345649',email:'1456892156@qq.com'},
         {id: '49', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄',phone:'12345649',email:'1456892156@qq.com'},
       ];
+      // this.common.login();
     },
 
   methods: {
+    login(){
+
+    },
     checkbox(checkval) { //多选框的值
         this.message = checkval;
     },
@@ -146,7 +178,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scpped>
 html body {
   margin: 0;
   padding: 0;
