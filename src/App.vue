@@ -31,10 +31,12 @@
         ></mt-page>
         <!-- label-width为靠右对齐  此属性必须存在，里面的宽度可以自己调节 -->
  <!-- label-width为靠右对齐  此属性必须存在，里面的宽度可以自己调节 -->
-        <mt-form>       
-          <el-form-item label="活动区域" :span="12" slot="input">
-            <el-input></el-input>
-          </el-form-item>         
+        <mt-form>
+          <mt-form-item :span="12">
+            <el-form-item label="活动名称">
+                 <el-input></el-input>
+            </el-form-item>
+            </mt-form-item>          
         </mt-form>
       </mt-list-content>
 
@@ -130,13 +132,6 @@ export default {
               message: '已取消删除'
             });
       }); 
-
-      // this.$alertMsgBox('确认执行删除操作', '提示')
-      // .then(() => {
-      //   this.tableData.splice(index,1);
-
-      // })
-      // .catch(() => {})
     },
 
     
