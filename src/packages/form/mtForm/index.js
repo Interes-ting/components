@@ -1,7 +1,6 @@
+import mtForm from './mtForm.vue'; //
 
-import mtForm from './mtForm.vue'; //表单一行三列
-
-mtForm.install = function(Vue) {
+mtForm.install = function (Vue) {
   Vue.component(mtForm.name, mtForm);
 };
 
