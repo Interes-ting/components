@@ -1,5 +1,12 @@
 <template>
-  <el-form :col="col" :label-width="labelWidth">
+  <el-form
+    :col="col"
+    :model="model"
+    :label-width="labelWidth"
+    :rules="rules"
+    ref="ruleForm"
+    :size="size"
+  >
     <slot></slot>
   </el-form>
 </template>
@@ -14,6 +21,19 @@ export default {
     col: {
       type: Number,
       default: 1
+    },
+    rules: {
+      type: Object
+    },
+    prop: {
+      type: String
+    },
+    model: {
+      type: Object
+    },
+    size: {
+      type: String,
+      default: ''
     }
   },
 

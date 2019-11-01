@@ -1,6 +1,6 @@
 <template>
   <el-col :span="this.span">
-    <el-form-item :label="label">
+    <el-form-item :label="label" :prop="prop" :rules="rules">
       <slot></slot>
     </el-form-item>
   </el-col>
@@ -19,7 +19,11 @@ export default {
     },
     cc: {
       type: Number
-    }
+    },
+    prop: {
+      type: String
+    },
+    rules: [Object, Array]
   },
   inject: {
     col: { default: 1 }
@@ -30,8 +34,6 @@ export default {
     } else {
       this.span = 24 / this.col
     }
-
-    window.console.log('1:' + this.span)
   }
 }
 </script>

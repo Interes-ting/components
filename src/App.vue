@@ -39,15 +39,22 @@
 
         <!-- 表单 -->
         <!-- label-width为靠右对齐  此属性必须存在，里面的宽度可以自己调节 -->
-        <mt-form :col="2" :model="formData" :rules="rules" ref="form">
+        <mt-form
+          :col="2"
+          :model="ruleForm"
+          :rules="rules"
+          ref="ruleForm"
+          label-width="100px"
+          class="demo-ruleForm"
+        >
           <mt-form-item label="姓名" :cc="24" prop="name">
-            <el-input v-model="formData.name"></el-input>
+            <el-input v-model="ruleForm.name"></el-input>
           </mt-form-item>
           <mt-form-item label="电话" prop="tel">
-            <el-input v-model="formData.name"></el-input>
+            <el-input v-model="ruleForm.tel"></el-input>
           </mt-form-item>
           <mt-form-item label="邮箱" prop="email">
-            <el-input v-model="formData.name"></el-input>
+            <el-input v-model="ruleForm.email"></el-input>
           </mt-form-item>
           <mt-button
             type="primary"
@@ -112,7 +119,7 @@ export default {
       total: 50, //	总条目数
 
       // 表单属性
-      formData: {
+      ruleForm: {
         name: '',
         tel: '',
         tel: ''
@@ -123,79 +130,85 @@ export default {
           { required: true, message: '请输入活动名称', trigger: 'blur' },
           { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
         ],
-        tel: [{}],
-        email: [{}]
+        tel: [
+          { required: true, message: '请输入活动名称', trigger: 'blur' },
+          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+        ],
+        email: [
+          { required: true, message: '请输入活动名称', trigger: 'blur' },
+          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+        ]
       }
     }
   },
   // 将表格数据 挂载到 vue实例挂载完成之后
-  mounted() {
-    this.tableData = [
-      {
-        id: '1',
-        name: '111111',
-        address: '上海市普陀区金沙江路 1518 弄',
-        phone: '12345649',
-        email: '1456892156@qq.com'
-      },
-      {
-        id: '2',
-        name: '111111',
-        address: '上海市普陀区金沙江路 1518 弄',
-        phone: '12345649',
-        email: '1456892156@qq.com'
-      },
-      {
-        id: '3',
-        name: '111111',
-        address: '上海市普陀区金沙江路 1518 弄',
-        phone: '12345649',
-        email: '1456892156@qq.com'
-      },
-      {
-        id: '4',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄',
-        phone: '12345649',
-        email: '1456892156@qq.com'
-      },
-      {
-        id: '5',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄',
-        phone: '12345649',
-        email: '1456892156@qq.com'
-      },
-      {
-        id: '6',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄',
-        phone: '12345649',
-        email: '1456892156@qq.com'
-      },
-      {
-        id: '7',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄',
-        phone: '12345649',
-        email: '1456892156@qq.com'
-      },
-      {
-        id: '18',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄',
-        phone: '12345649',
-        email: '1456892156@qq.com'
-      },
-      {
-        id: '49',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄',
-        phone: '12345649',
-        email: '1456892156@qq.com'
-      }
-    ]
-  },
+  // mounted() {
+  //   this.tableData = [
+  //     {
+  //       id: '1',
+  //       name: '111111',
+  //       address: '上海市普陀区金沙江路 1518 弄',
+  //       phone: '12345649',
+  //       email: '1456892156@qq.com'
+  //     },
+  //     {
+  //       id: '2',
+  //       name: '111111',
+  //       address: '上海市普陀区金沙江路 1518 弄',
+  //       phone: '12345649',
+  //       email: '1456892156@qq.com'
+  //     },
+  //     {
+  //       id: '3',
+  //       name: '111111',
+  //       address: '上海市普陀区金沙江路 1518 弄',
+  //       phone: '12345649',
+  //       email: '1456892156@qq.com'
+  //     },
+  //     {
+  //       id: '4',
+  //       name: '王小虎',
+  //       address: '上海市普陀区金沙江路 1518 弄',
+  //       phone: '12345649',
+  //       email: '1456892156@qq.com'
+  //     },
+  //     {
+  //       id: '5',
+  //       name: '王小虎',
+  //       address: '上海市普陀区金沙江路 1518 弄',
+  //       phone: '12345649',
+  //       email: '1456892156@qq.com'
+  //     },
+  //     {
+  //       id: '6',
+  //       name: '王小虎',
+  //       address: '上海市普陀区金沙江路 1518 弄',
+  //       phone: '12345649',
+  //       email: '1456892156@qq.com'
+  //     },
+  //     {
+  //       id: '7',
+  //       name: '王小虎',
+  //       address: '上海市普陀区金沙江路 1518 弄',
+  //       phone: '12345649',
+  //       email: '1456892156@qq.com'
+  //     },
+  //     {
+  //       id: '18',
+  //       name: '王小虎',
+  //       address: '上海市普陀区金沙江路 1518 弄',
+  //       phone: '12345649',
+  //       email: '1456892156@qq.com'
+  //     },
+  //     {
+  //       id: '49',
+  //       name: '王小虎',
+  //       address: '上海市普陀区金沙江路 1518 弄',
+  //       phone: '12345649',
+  //       email: '1456892156@qq.com'
+  //     }
+  //   ]
+  // },
 
   methods: {
     checkbox(checkval) {
@@ -255,8 +268,9 @@ export default {
       console.log(val)
     },
     submitForm(formName) {
-      console.log(formName)
-      this.$refs[formName].validate(valid => {
+      // console.log(this.$refs[formName].$children[0].validate)
+
+      this.$refs[formName].$children[0].validate(valid => {
         if (valid) {
           alert('submit!')
         } else {
@@ -265,8 +279,8 @@ export default {
         }
       })
     },
-    resetForm(formName) {
-      this.$refs[formName].resetFields()
+    resetForm() {
+      this.$refs[formName].$refs.Form.ruleForm()
     }
   }
 }
