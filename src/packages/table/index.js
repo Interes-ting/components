@@ -1,7 +1,7 @@
-import mtTbale from './table.vue'; //表格
+import mtTable from './table.vue'; //表格
 
-mtTbale.install = function(Vue) {
-  Vue.component(mtTbale.name, mtTbale);
+mtTable.install = function (Vue) {
+  Vue.component(mtTable.name, mtTable);
 };
 
-export default mtTbale;
+export default mtTable;

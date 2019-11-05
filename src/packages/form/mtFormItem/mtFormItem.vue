@@ -29,8 +29,8 @@ export default {
     col: { default: 1 }
   },
   created: function() {
-    if (this.cc) {
-      this.span = this.cc
+    if (this.spans) {
+      this.span = this.spans
     } else {
       this.span = 24 / this.col
     }

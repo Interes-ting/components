@@ -39,15 +39,15 @@
 
         <!-- 表单 -->
         <!-- label-width为靠右对齐  此属性必须存在，里面的宽度可以自己调节 -->
-        <mt-form
-          :col="2"
+        <!-- <mt-form
+          :col="1"
           :model="ruleForm"
           :rules="rules"
           ref="ruleForm"
           label-width="100px"
           class="demo-ruleForm"
         >
-          <mt-form-item label="姓名" :cc="24" prop="name">
+          <mt-form-item label="姓名" :spans="8" prop="name">
             <el-input v-model="ruleForm.name"></el-input>
           </mt-form-item>
           <mt-form-item label="电话" prop="tel">
@@ -56,14 +56,76 @@
           <mt-form-item label="邮箱" prop="email">
             <el-input v-model="ruleForm.email"></el-input>
           </mt-form-item>
-          <mt-button
-            type="primary"
-            icon="el-icon-success"
-            label="保存"
-            @click="submitForm('ruleForm')"
-          ></mt-button>
-          <mt-button type="primary" label="登录" @click="resetForm('ruleForm')"></mt-button>
-        </mt-form>
+          <mt-form-item>
+            <mt-button
+              type="primary"
+              icon="el-icon-success"
+              label="保存"
+              @click="submitForm('ruleForm')"
+            ></mt-button>
+            <mt-button type="primary" label="登录" @click="resetForm('ruleForm')"></mt-button>
+          </mt-form-item>
+        </mt-form>-->
+
+        <!-- 显示更多盒子 -->
+        <!-- <div class="container" style="height:100px">
+          第二代“会飞的汽车”、高端医疗产品，到与市民日常生活相关的食品、日化、电子产品……中国国际进口博览局的官微用一张长长长长长长长图，带你遍览第二届进博会上的“尖端好物”。详见图解↓
+          <mt-show-more>
+            <div
+              class="container"
+              v-show="isActive"
+            >有备第二届进博会明天就将重磅登场，将有哪些展品惊艳亮相？会给你带来怎样全新的感官冲击？从无人机配送服务等高</div>
+          </mt-show-more>
+          <el-button @click="isActive = !isActive" style="width：100%">
+            <i class="el-icon-caret-bottom">展开</i>
+          </el-button>
+        </div>-->
+        <mt-collapse :showHeight="100">
+          <el-form :inline="true">
+            <el-form-item label="审批人">
+              <el-input placeholder="审批人"></el-input>
+            </el-form-item>
+          </el-form>
+          <el-form :inline="true">
+            <el-form-item label="审批人">
+              <el-input placeholder="审批人"></el-input>
+            </el-form-item>
+          </el-form>
+          <el-form :inline="true">
+            <el-form-item label="审批人">
+              <el-input placeholder="审批人"></el-input>
+            </el-form-item>
+          </el-form>
+          <el-form :inline="true">
+            <el-form-item label="审批人">
+              <el-input placeholder="审批人"></el-input>
+            </el-form-item>
+          </el-form>
+          <el-form :inline="true">
+            <el-form-item label="审批人">
+              <el-input placeholder="审批人"></el-input>
+            </el-form-item>
+          </el-form>
+        </mt-collapse>
+        <!-- <div>
+          <el-form :inline="true">
+            <el-form-item label="审批人">
+              <el-input placeholder="审批人"></el-input>
+            </el-form-item>
+            <el-form-item label="审批人">
+              <el-input placeholder="审批人"></el-input>
+            </el-form-item>
+            <el-form-item label="审批人">
+              <el-input placeholder="审批人"></el-input>
+            </el-form-item>
+            <el-form-item label="审批人">
+              <el-input placeholder="审批人"></el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary">查询</el-button>
+            </el-form-item>
+          </el-form>
+        </div>-->
       </mt-list-content>
     </mt-container>
   </div>
@@ -76,6 +138,7 @@ export default {
     return {
       //用来保存每次多选框的值
       message: null,
+      isActive: true,
 
       // 表格表头属性设置
       columns: [
@@ -142,73 +205,73 @@ export default {
     }
   },
   // 将表格数据 挂载到 vue实例挂载完成之后
-  // mounted() {
-  //   this.tableData = [
-  //     {
-  //       id: '1',
-  //       name: '111111',
-  //       address: '上海市普陀区金沙江路 1518 弄',
-  //       phone: '12345649',
-  //       email: '1456892156@qq.com'
-  //     },
-  //     {
-  //       id: '2',
-  //       name: '111111',
-  //       address: '上海市普陀区金沙江路 1518 弄',
-  //       phone: '12345649',
-  //       email: '1456892156@qq.com'
-  //     },
-  //     {
-  //       id: '3',
-  //       name: '111111',
-  //       address: '上海市普陀区金沙江路 1518 弄',
-  //       phone: '12345649',
-  //       email: '1456892156@qq.com'
-  //     },
-  //     {
-  //       id: '4',
-  //       name: '王小虎',
-  //       address: '上海市普陀区金沙江路 1518 弄',
-  //       phone: '12345649',
-  //       email: '1456892156@qq.com'
-  //     },
-  //     {
-  //       id: '5',
-  //       name: '王小虎',
-  //       address: '上海市普陀区金沙江路 1518 弄',
-  //       phone: '12345649',
-  //       email: '1456892156@qq.com'
-  //     },
-  //     {
-  //       id: '6',
-  //       name: '王小虎',
-  //       address: '上海市普陀区金沙江路 1518 弄',
-  //       phone: '12345649',
-  //       email: '1456892156@qq.com'
-  //     },
-  //     {
-  //       id: '7',
-  //       name: '王小虎',
-  //       address: '上海市普陀区金沙江路 1518 弄',
-  //       phone: '12345649',
-  //       email: '1456892156@qq.com'
-  //     },
-  //     {
-  //       id: '18',
-  //       name: '王小虎',
-  //       address: '上海市普陀区金沙江路 1518 弄',
-  //       phone: '12345649',
-  //       email: '1456892156@qq.com'
-  //     },
-  //     {
-  //       id: '49',
-  //       name: '王小虎',
-  //       address: '上海市普陀区金沙江路 1518 弄',
-  //       phone: '12345649',
-  //       email: '1456892156@qq.com'
-  //     }
-  //   ]
-  // },
+  mounted() {
+    this.tableData = [
+      {
+        id: '1',
+        name: '111111',
+        address: '上海市普陀区金沙江路 1518 弄',
+        phone: '12345649',
+        email: '1456892156@qq.com'
+      },
+      {
+        id: '2',
+        name: '111111',
+        address: '上海市普陀区金沙江路 1518 弄',
+        phone: '12345649',
+        email: '1456892156@qq.com'
+      },
+      {
+        id: '3',
+        name: '111111',
+        address: '上海市普陀区金沙江路 1518 弄',
+        phone: '12345649',
+        email: '1456892156@qq.com'
+      },
+      {
+        id: '4',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄',
+        phone: '12345649',
+        email: '1456892156@qq.com'
+      },
+      {
+        id: '5',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄',
+        phone: '12345649',
+        email: '1456892156@qq.com'
+      },
+      {
+        id: '6',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄',
+        phone: '12345649',
+        email: '1456892156@qq.com'
+      },
+      {
+        id: '7',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄',
+        phone: '12345649',
+        email: '1456892156@qq.com'
+      },
+      {
+        id: '18',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄',
+        phone: '12345649',
+        email: '1456892156@qq.com'
+      },
+      {
+        id: '49',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄',
+        phone: '12345649',
+        email: '1456892156@qq.com'
+      }
+    ]
+  },
 
   methods: {
     checkbox(checkval) {
@@ -285,3 +348,15 @@ export default {
   }
 }
 </script>
+<style >
+.container {
+  background-color: red;
+  position: relative;
+  transition: 0.3s;
+}
+.description {
+  background-color: pink;
+  width: 100%;
+  margin: 0 auto;
+}
+</style>

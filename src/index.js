@@ -1,6 +1,4 @@
 import mtButton from './packages/button/mtButton/index' //默认按钮
-
-
 import BackButton from './packages/button/BackButton/index' //返回按钮
 import SaveButton from './packages/button/SaveButton/index' //保存按钮
 import SeleteButton from './packages/button/SelectButton/index' //查询按钮
@@ -23,11 +21,12 @@ import mtEditContent from './packages/container/editContent/index' //编辑页�
 import mtViewContent from './packages/container/viewContent/index' //查看页面区域容器
 import mtToolbar from './packages/container/toolbar/index' //工具栏区域容器
 
-import mtFormItem from './packages/form/mtFormItem/index' //表单一行显示三列
-import mtForm from './packages/form/mtForm/index' //表单单独一列
+import mtFormItem from './packages/form/mtFormItem/index' //表单子元素
+import mtForm from './packages/form/mtForm/index' //表单
 
-
-
+// import mtTopBar from './packages/TopBar/index'
+import mtShowMore from './packages/ShowMoreBox/index'
+import mtCollapse from './packages/collapse/index'
 
 const components = [
   mtButton,
@@ -52,10 +51,12 @@ const components = [
   mtToolbar,
   mtFormItem,
   mtForm,
-
+  // mtTopBar,
+  mtShowMore,
+  mtCollapse
 ]
 
-const install = function(Vue, opts = {}) {
+const install = function (Vue, opts = {}) {
   components.map(component => {
     Vue.component(component.name, component);
   })
@@ -90,5 +91,7 @@ export default {
   mtToolbar,
   mtFormItem,
   mtForm,
-
+  // mtTopBar,
+  mtShowMore,
+  mtCollapse
 }
