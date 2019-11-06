@@ -12,19 +12,23 @@
       <!-- 列表界面内容区域 -->
       <mt-list-content slot="main">
         <!-- 表格 -->
-        <mt-table :columns="columns" :data="tableData" @check="checkbox">
-          <el-table-column
-            slot="table_oper"
-            align="center"
-            label="操作"
-            width="150"
-            :resizable="false"
-          >
-            <template slot-scope="scope">
-              <el-button type="text" @click.prevent="editTableData(scope.$index,scope.row)">编辑</el-button>
-              <el-button type="text" @click="deleteTableData(scope.$index,scope.row)">删除</el-button>
+        <!-- 需求：:columns="columns" 不写在mt-table的时候可以使用原生element标签 -->
+        <mt-table :data="tableData" :columns="columns" @check="checkbox">
+          <template slot="table_oper">
+            <el-table-column align="center" label="操作" width="150" :resizable="false">
+              <!-- 单行操作按钮 -->
+              <template slot-scope="scope">
+                <el-button type="text" @click.prevent="editTableData(scope.$index,scope.row)">编辑</el-button>
+                <el-button type="text" @click="deleteTableData(scope.$index,scope.row)">删除</el-button>
+              </template>
+            </el-table-column>
+            <!--使用原生的element标签报错-->
+            <template v-if="isEmptyObject(columns)">
+              <el-table-column prop="date" label="日期" width="180"></el-table-column>
+              <el-table-column prop="name" label="姓名" width="180"></el-table-column>
+              <el-table-column prop="address" label="地址"></el-table-column>
             </template>
-          </el-table-column>
+          </template>
         </mt-table>
 
         <!-- 分页 -->
@@ -33,53 +37,10 @@
           :page-sizes="pageSizes"
           :page-size="pageSize"
           :total="total"
-          @sizeChange="sizeChange"
-          @currentChange="currentChange"
+          @size-change="sizeChange"
+          @current-change="currentChange"
         ></mt-page>
-
-        <!-- 表单 -->
-        <!-- label-width为靠右对齐  此属性必须存在，里面的宽度可以自己调节 -->
-        <!-- <mt-form
-          :col="1"
-          :model="ruleForm"
-          :rules="rules"
-          ref="ruleForm"
-          label-width="100px"
-          class="demo-ruleForm"
-        >
-          <mt-form-item label="姓名" :spans="8" prop="name">
-            <el-input v-model="ruleForm.name"></el-input>
-          </mt-form-item>
-          <mt-form-item label="电话" prop="tel">
-            <el-input v-model="ruleForm.tel"></el-input>
-          </mt-form-item>
-          <mt-form-item label="邮箱" prop="email">
-            <el-input v-model="ruleForm.email"></el-input>
-          </mt-form-item>
-          <mt-form-item>
-            <mt-button
-              type="primary"
-              icon="el-icon-success"
-              label="保存"
-              @click="submitForm('ruleForm')"
-            ></mt-button>
-            <mt-button type="primary" label="登录" @click="resetForm('ruleForm')"></mt-button>
-          </mt-form-item>
-        </mt-form>-->
-
-        <!-- 显示更多盒子 -->
-        <!-- <div class="container" style="height:100px">
-          第二代“会飞的汽车”、高端医疗产品，到与市民日常生活相关的食品、日化、电子产品……中国国际进口博览局的官微用一张长长长长长长长图，带你遍览第二届进博会上的“尖端好物”。详见图解↓
-          <mt-show-more>
-            <div
-              class="container"
-              v-show="isActive"
-            >有备第二届进博会明天就将重磅登场，将有哪些展品惊艳亮相？会给你带来怎样全新的感官冲击？从无人机配送服务等高</div>
-          </mt-show-more>
-          <el-button @click="isActive = !isActive" style="width：100%">
-            <i class="el-icon-caret-bottom">展开</i>
-          </el-button>
-        </div>-->
+        <!-- 折叠面板 -->
         <mt-collapse :showHeight="100">
           <el-form :inline="true">
             <el-form-item label="审批人">
@@ -107,25 +68,6 @@
             </el-form-item>
           </el-form>
         </mt-collapse>
-        <!-- <div>
-          <el-form :inline="true">
-            <el-form-item label="审批人">
-              <el-input placeholder="审批人"></el-input>
-            </el-form-item>
-            <el-form-item label="审批人">
-              <el-input placeholder="审批人"></el-input>
-            </el-form-item>
-            <el-form-item label="审批人">
-              <el-input placeholder="审批人"></el-input>
-            </el-form-item>
-            <el-form-item label="审批人">
-              <el-input placeholder="审批人"></el-input>
-            </el-form-item>
-            <el-form-item>
-              <el-button type="primary">查询</el-button>
-            </el-form-item>
-          </el-form>
-        </div>-->
       </mt-list-content>
     </mt-container>
   </div>
@@ -283,6 +225,13 @@ export default {
       console.log('111')
     },
 
+    isEmptyObject(obj) {
+      for (var key in obj) {
+        return false //返回false，不为空对象
+      }
+      return true //返回true，为空对象
+    },
+
     delete() {
       //批量删除事件
       console.log(this.message)
@@ -320,6 +269,7 @@ export default {
 
     sizeChange(val) {
       // 改变分页数据显示条数
+      console.log('111')
 
       console.log('一页显示多少条')
       console.log(val)
@@ -327,6 +277,8 @@ export default {
 
     currentChange(val) {
       // 翻页处理
+      console.log('111')
+
       console.log('这是翻页')
       console.log(val)
     },
@@ -348,12 +300,13 @@ export default {
   }
 }
 </script>
-<style >
+<style>
 .container {
   background-color: red;
   position: relative;
   transition: 0.3s;
 }
+
 .description {
   background-color: pink;
   width: 100%;

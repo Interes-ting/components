@@ -24,9 +24,7 @@ import mtToolbar from './packages/container/toolbar/index' //工具栏区域容�
 import mtFormItem from './packages/form/mtFormItem/index' //表单子元素
 import mtForm from './packages/form/mtForm/index' //表单
 
-// import mtTopBar from './packages/TopBar/index'
-import mtShowMore from './packages/ShowMoreBox/index'
-import mtCollapse from './packages/collapse/index'
+import mtCollapse from './packages/collapse/index' //折叠面板
 
 const components = [
   mtButton,
@@ -51,8 +49,6 @@ const components = [
   mtToolbar,
   mtFormItem,
   mtForm,
-  // mtTopBar,
-  mtShowMore,
   mtCollapse
 ]
 
@@ -91,7 +87,5 @@ export default {
   mtToolbar,
   mtFormItem,
   mtForm,
-  // mtTopBar,
-  mtShowMore,
   mtCollapse
 }

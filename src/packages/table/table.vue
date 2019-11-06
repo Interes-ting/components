@@ -14,7 +14,6 @@
       <!-- 这里使用插槽，在父组件中放置编辑删除按钮 -->
       <slot name="table_oper" />
       <!-- 表格 -->
-
       <template v-for="(item, index) in columns">
         <el-table-column
           v-if="item.show != false"
