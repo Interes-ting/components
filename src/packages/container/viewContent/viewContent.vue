@@ -1,14 +1,10 @@
 <template>
-
-    <el-main>
-      <slot>
-    
-      </slot>
-    </el-main>
-  
+  <el-main class="mt-view-content">
+    <slot></slot>
+  </el-main>
 </template>
 <script>
 export default {
-  name: "mtViewConetnt" //查看内容区域
-};
+  name: 'mtViewConetnt' //查看内容区域
+}
 </script>

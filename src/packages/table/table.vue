@@ -1,9 +1,10 @@
 
 <template>
-  <div id="commonTable">
+  <div id="mt-table">
     <el-table
       ref="mt-table"
       :data="data"
+      :height="height"
       :max-height="maxHeight"
       stripe
       tooltip-effect="light"
@@ -14,7 +15,7 @@
       <!-- 这里使用插槽，在父组件中放置编辑删除按钮 -->
       <slot name="table_oper" />
       <!-- 表格 -->
-      <template v-for="(item, index) in columns">
+      <template v-for="(item, index) in columns" 02>
         <el-table-column
           v-if="item.show != false"
           :key="index"
@@ -23,6 +24,7 @@
           :align="item.align?item.align:'center'"
           :width="item.width"
           show
+          class="mt-table-th"
         ></el-table-column>
       </template>
     </el-table>
@@ -38,6 +40,10 @@ export default {
     maxHeight: {
       type: Number,
       default: 2000
+    },
+    height: {
+      type: Number,
+      default: 700
     }
   },
   data() {

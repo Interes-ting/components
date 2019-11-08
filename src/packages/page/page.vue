@@ -2,6 +2,7 @@
   <div>
     <!-- 分页 -->
     <el-pagination
+      class="mt-page"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       style="text-align: center;margin:20px 0;"

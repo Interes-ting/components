@@ -1,6 +1,6 @@
 <template>
   <el-col :span="this.span">
-    <el-form-item :label="label" :prop="prop" :rules="rules">
+    <el-form-item :label="label" :prop="prop" :rules="rules" class="mt-form-item">
       <slot></slot>
     </el-form-item>
   </el-col>

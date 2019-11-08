@@ -25,7 +25,8 @@ import mtFormItem from './packages/form/mtFormItem/index' //表单子元素
 import mtForm from './packages/form/mtForm/index' //表单
 
 import mtCollapse from './packages/collapse/index' //折叠面板
-
+import mtTopbar from './packages/topbar/index'
+import mtNav from './packages/nav/index'
 const components = [
   mtButton,
   BackButton,
@@ -49,7 +50,9 @@ const components = [
   mtToolbar,
   mtFormItem,
   mtForm,
-  mtCollapse
+  mtCollapse,
+  mtTopbar,
+  mtNav
 ]
 
 const install = function (Vue, opts = {}) {
@@ -87,5 +90,7 @@ export default {
   mtToolbar,
   mtFormItem,
   mtForm,
-  mtCollapse
+  mtCollapse,
+  mtTopbar,
+  mtNav
 }

@@ -6,6 +6,7 @@
     :rules="rules"
     ref="ruleForm"
     :size="size"
+    class="mt-form"
   >
     <slot></slot>
   </el-form>

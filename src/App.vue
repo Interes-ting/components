@@ -2,7 +2,7 @@
   <div id="app">
     <mt-container>
       <!-- 工具栏区域 -->
-      <mt-toolbar slot="header">
+      <mt-toolbar :menuList="menuList" slot="header">
         <!-- 标签 -->
         <mt-button type="danger" label="11111"></mt-button>
         <mt-button type="primary" icon="el-icon-success" label="保存" @click="add"></mt-button>
@@ -11,8 +11,24 @@
 
       <!-- 列表界面内容区域 -->
       <mt-list-content slot="main">
+        <!-- 
+          menuList: 导航栏列表
+          menuNum: 默认一行最多显示
+          bgc: 背景色 （仅支持 hex 格式: eg: #fff）
+          txc: 菜单的文字颜色 （仅支持 hex 格式: eg: #fff）
+          atc:
+        -->
+        <mt-topbar
+          :menuList="menuList"
+          :menuNum="this.menuList.length"
+          @select="handleSelect"
+          :bgc="bgc"
+          :txc="txc"
+          :atc="atc"
+        ></mt-topbar>
+
         <!-- 表格 -->
-        <!-- 需求：:columns="columns" 不写在mt-table的时候可以使用原生element标签 -->
+        <!-- :columns="columns" 不写在mt-table的时候可以使用原生element标签 -->
         <mt-table :data="tableData" :columns="columns" @check="checkbox">
           <template slot="table_oper">
             <el-table-column align="center" label="操作" width="150" :resizable="false">
@@ -78,6 +94,107 @@ export default {
   name: 'app',
   data() {
     return {
+      bgc: '#545c64',
+      txc: '#fff',
+      atc: '#ffd04b',
+      menuList: [
+        {
+          id: 1,
+          title: '首页'
+        },
+        {
+          id: 2,
+          title: '业务管理'
+        },
+        {
+          id: 3,
+          title: '油卡管理'
+        },
+        {
+          id: 4,
+          title: '财务管理'
+        },
+        {
+          id: 5,
+          title: '投诉管理'
+        },
+        {
+          id: 6,
+          title: '车辆监控'
+        },
+        {
+          id: 7,
+          title: '车辆管理'
+        },
+        {
+          id: 8,
+          title: '司机管理'
+        },
+        {
+          id: 9,
+          title: '统计分析'
+        },
+        {
+          id: 10,
+          title: '系统管理'
+        },
+        {
+          id: 11,
+          title: '导航11'
+        },
+        {
+          id: 12,
+          title: '导航12'
+        },
+        {
+          id: 13,
+          title: '导航13'
+        },
+        {
+          id: 14,
+          title: '导航14'
+        },
+        {
+          id: 15,
+          title: '导航15'
+        },
+        {
+          id: 16,
+          title: '业务管理'
+        },
+        {
+          id: 17,
+          title: '油卡管理'
+        },
+        {
+          id: 18,
+          title: '财务管理'
+        },
+        {
+          id: 19,
+          title: '投诉管理'
+        },
+        {
+          id: 20,
+          title: '车辆监控'
+        },
+        {
+          id: 21,
+          title: '车辆管理'
+        },
+        {
+          id: 22,
+          title: '司机管理'
+        },
+        {
+          id: 23,
+          title: '统计分析'
+        },
+        {
+          id: 24,
+          title: '系统管理'
+        }
+      ],
       //用来保存每次多选框的值
       message: null,
       isActive: true,
@@ -296,6 +413,10 @@ export default {
     },
     resetForm() {
       this.$refs[formName].$refs.Form.ruleForm()
+    },
+    handleSelect(key, keyPath) {
+      // 菜单激活回调
+      console.log(key, keyPath)
     }
   }
 }
