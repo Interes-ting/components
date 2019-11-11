@@ -2,7 +2,7 @@
   <div id="app">
     <mt-container>
       <!-- 工具栏区域 -->
-      <mt-toolbar :menuList="menuList" slot="header">
+      <mt-toolbar slot="header">
         <!-- 标签 -->
         <mt-button type="danger" label="11111"></mt-button>
         <mt-button type="primary" icon="el-icon-success" label="保存" @click="add"></mt-button>
@@ -18,14 +18,7 @@
           txc: 菜单的文字颜色 （仅支持 hex 格式: eg: #fff）
           atc:
         -->
-        <mt-topbar
-          :menuList="menuList"
-          :menuNum="this.menuList.length"
-          @select="handleSelect"
-          :bgc="bgc"
-          :txc="txc"
-          :atc="atc"
-        ></mt-topbar>
+        <mt-topbar :menulist="menulist" @select="handleSelect" :bgc="bgc" :txc="txc" :atc="atc"></mt-topbar>
 
         <!-- 表格 -->
         <!-- :columns="columns" 不写在mt-table的时候可以使用原生element标签 -->
@@ -97,7 +90,7 @@ export default {
       bgc: '#545c64',
       txc: '#fff',
       atc: '#ffd04b',
-      menuList: [
+      menulist: [
         {
           id: 1,
           title: '首页'

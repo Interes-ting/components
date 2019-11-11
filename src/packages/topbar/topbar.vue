@@ -17,10 +17,10 @@
         :key="item.id"
         :index="(item.id).toString()"
       >{{item.title}}</el-menu-item>
-      <el-submenu :index="(menuData.length+1).toString()" v-if="menuData.length<menuList.length">
+      <el-submenu :index="(menuData.length+1).toString()" v-if="menuData.length<menulist.length">
         <template slot="title">更多菜单</template>
         <el-menu-item
-          v-for="item in submenuList"
+          v-for="item in submenulist"
           :key="item.id"
           :index="(item.id).toString()"
         >{{item.title}}</el-menu-item>
@@ -32,32 +32,25 @@
 <script>
 export default {
   name: 'mtTopbar',
-  props: ['menuList', 'menuNum', 'bgc', 'txc', 'atc'],
+  props: ['menulist', 'menuNum', 'bgc', 'txc', 'atc'],
   data() {
     return {
       activeIndex2: '1',
-      submenuList: [],
+      submenulist: [],
       menuData: [],
       HTMLwidth: window.innerWidth
     }
   },
   watch: {
-    menuList(val, oldVal) {
+    menulist(val, oldVal) {
       this.getmenulist()
     }
   },
   mounted() {
-    // this.getmenulist()
-    // console.log(window.innerWidth)
-    // console.log(document.getElementById('menuTitle').offsetWidth)
-    // console.log(this.menuList)
-    // console.log(this.menuData)
     const that = this
     window.addEventListener('resize', function() {
       return (() => {
         window.HTMLwidth = window.innerWidth
-        console.log(window.HTMLwidth)
-
         that.HTMLwidth = window.HTMLwidth
         that.getmenulist()
       })()
@@ -71,9 +64,9 @@ export default {
         Math.floor(document.getElementById('menuTitle').offsetWidth / 104) - 4
       if (menuNum >= this.menuNum) menuNum = this.menuNum
       if (menuNum <= 0) menuNum = 0
-      this.menuData = this.menuList.slice(0, menuNum)
-      if (this.menuList.length > menuNum) {
-        this.submenuList = this.menuList.slice(menuNum, this.menuList.length)
+      this.menuData = this.menulist.slice(0, menuNum)
+      if (this.menulist.length > menuNum) {
+        this.submenulist = this.menulist.slice(menuNum, this.menulist.length)
       }
     }
   }
